@@ -54,9 +54,29 @@ export const getPlans = () => api.get('/plans');
 export const createPlan = (data: any) => api.post('/admin/plans', data);
 export const updatePlan = (id: number, data: any) => api.put(`/admin/plans/${id}`, data);
 
-// Supervisors
+// Supervisors (admin-side)
 export const getSupervisors = () => api.get('/admin/supervisors');
 export const createSupervisor = (data: any) => api.post('/admin/supervisors', data);
+export const updateSupervisor = (id: number, data: any) => api.put(`/admin/supervisors/${id}`, data);
+export const deleteSupervisor = (id: number) => api.delete(`/admin/supervisors/${id}`);
+
+// Supervisor portal APIs (called when logged-in user is a supervisor)
+export const getSupervisorDashboard = () => api.get('/supervisor/dashboard');
+export const getMyGardeners = (params?: any) => api.get('/supervisor/gardeners', { params });
+export const getUnassignedGardeners = () => api.get('/supervisor/gardeners/unassigned');
+export const getMyGardenerDetail = (id: number) => api.get(`/supervisor/gardeners/${id}`);
+export const updateMyGardener = (id: number, data: any) => api.put(`/supervisor/gardeners/${id}`, data);
+export const approveMyGardener = (id: number) => api.post(`/supervisor/gardeners/${id}/approve`);
+export const rejectMyGardener = (id: number) => api.post(`/supervisor/gardeners/${id}/reject`);
+export const toggleMyGardener = (id: number, is_active: boolean) => api.post(`/supervisor/gardeners/${id}/toggle`, { is_active });
+export const assignMyGardener = (id: number) => api.post(`/supervisor/gardeners/${id}/assign`);
+export const unassignMyGardener = (id: number) => api.post(`/supervisor/gardeners/${id}/unassign`);
+export const assignGardenerZones = (id: number, geofence_ids: number[]) => api.post(`/supervisor/gardeners/${id}/zones`, { geofence_ids });
+export const getMyBookings = (params?: any) => api.get('/supervisor/bookings', { params });
+export const giveReward = (data: any) => api.post('/supervisor/rewards', data);
+export const getMyRewards = () => api.get('/supervisor/rewards');
+export const getMyComplaints = () => api.get('/supervisor/complaints');
+export const getGeofences = () => api.get('/geofences');
 
 // Rewards
 export const getRewards = (params?: any) => api.get('/admin/rewards', { params });
