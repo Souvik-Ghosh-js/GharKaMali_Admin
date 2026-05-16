@@ -110,7 +110,15 @@ export const deletePriceHikeSchedule = (id: number) => api.delete(`/admin/price-
 // Utilization report
 export const getUtilizationReport = (params?: any) => api.get('/admin/utilization', { params })
 
-// Complaints
+// Complaints — Ticketing
 export const getComplaints = (params?: any) => api.get('/complaints', { params })
 export const getComplaintStats = () => api.get('/complaints/stats')
+export const getComplaintDetail = (id: number) => api.get(`/complaints/${id}`)
 export const updateComplaint = (id: number, data: any) => api.put(`/complaints/${id}`, data)
+export const addComplaintComment = (id: number, data: FormData) =>
+  api.post(`/complaints/${id}/comments`, data, { headers: { 'Content-Type': 'multipart/form-data' } })
+export const getComplaintDepartments = () => api.get('/complaints/departments')
+export const createComplaintDepartment = (data: any) => api.post('/admin/complaints/departments', data)
+export const updateComplaintDepartment = (id: number, data: any) => api.put(`/admin/complaints/departments/${id}`, data)
+export const deleteComplaintDepartment = (id: number) => api.delete(`/admin/complaints/departments/${id}`)
+export const getComplaintAssignees = () => api.get('/admin/complaints/assignees')
